@@ -1,0 +1,34 @@
+#include "star.h"
+
+#include <QVBoxLayout>
+#include <QPainter>
+#include <QPen>
+#include <QColor>
+
+void Star::paintEvent(QPaintEvent *) {
+    QPainter painter(this);
+
+    int centerX = width() / 2; // определяем центр по оси X
+    int centerY = height() / 2; // определяем центр по оси Y
+    int radius = qMin(width(), height()) / 2; // определяем радиус звезды
+
+    int numPoints = 5; // количество вершин звезды, можно изменить на любое нечетное число для рисования N-конечной звезды
+
+    QVector<QPointF> points; // вектор для хранения координат вершин звезды
+
+    for (int i = 0; i < numPoints * 2; ++i)
+    {
+        qreal angle = i * M_PI / numPoints; // вычисляем угол поворота для каждой вершины звезды
+
+        // вычисляем координаты вершины в полярных координатах
+        qreal x = centerX + radius * qCos(angle);
+        qreal y = centerY + radius * qSin(angle);
+
+        points.append(QPointF(x, y)); // добавляем координаты вершины в вектор
+    }
+}
+
+Star::Star()
+{
+}
+

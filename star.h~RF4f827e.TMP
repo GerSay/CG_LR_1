@@ -1,0 +1,44 @@
+#ifndef STAR_H
+#define STAR_H
+
+#include <QWidget>
+#include <QTimer>
+
+class Star : public QWidget
+{
+    Q_OBJECT
+
+    bool positive = true;
+    int angle = 0;
+    const int step = 1;
+    const int interval = 10;
+    const int maximum = 180;
+
+protected:
+    virtual void drawStar();
+    virtual void paintEvent(QPaintEvent *event);
+
+    qreal rotate = 0;
+
+
+public:
+    explicit Star(QWidget*);
+    Star();
+
+    Star(): QWidget(nullptr) {
+        QTimer* timer = new QTimer(this);
+        connect(timer, &QTimer::timeout, this, &Star::rotate);
+        timer->start(interval);
+    }
+
+private:
+    void rotate() {
+        if (angle < -maximum || angle > maximum)
+            positive = !positive;
+        else
+            angle = angle - step;
+        update();
+    }
+};
+
+#endif // STAR_H

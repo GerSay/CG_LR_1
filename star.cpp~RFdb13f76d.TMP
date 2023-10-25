@@ -1,0 +1,15 @@
+#include "star.h"
+
+#include <QVBoxLayout>
+#include <QPainter>
+#include <QPen>
+#include <QColor>
+
+void Star::paintEvent(QPaintEvent *) {
+
+}
+
+Star::Star()
+{
+}
+

@@ -1,0 +1,23 @@
+#include "mainwindow.h"
+#include "./ui_mainwindow.h"
+
+#include "Star.h"
+#include <QPainter>
+#include <QWidget>
+
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+}
+
+MainWindow::paintEvent(QPaintEvent *) {
+    QPainter painter(this);
+
+    Star star();
+    painter.drawEllipse(star);
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}

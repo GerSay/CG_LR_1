@@ -1,0 +1,43 @@
+#include "mainwindow.h"
+#include "./ui_mainwindow.h"
+
+#include <QPainter>
+#include <QVBoxLayout>
+
+#include "Star.h"
+
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
+{
+    QVBoxLayout *vlay = new QVBoxLayout();
+    Star *lamp = new Star();
+    vlay->addWidget(lamp);
+
+    ui->centralwidget->setLayout(vlay);
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+void MainWindow::paintEvent(QPaintEvent *) {
+//    QPainter painter(this);
+
+//    QColor orangeRed(240, 100, 0);
+
+//    float radius;
+//    if (width() > height())
+//        radius = (height() - 20) / 2;
+//    else
+//        radius = (width() - 20) / 2;
+
+//    if (width() < 30 || height() < 30) return;
+
+//    QPointF center = QPointF(width() / 2, height() / 2);
+
+//    QRectF rect = QRectF(center.x() - radius, center.y() - radius, radius * 2, radius * 2);
+
+//    painter.setBrush(orangeRed);
+//    painter.setPen(orangeRed);
+//    painter.drawEllipse(rect);
+}

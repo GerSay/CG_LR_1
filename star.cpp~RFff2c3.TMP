@@ -1,0 +1,53 @@
+#include "star.h"
+
+#include <QPen>
+#include <QColor>
+#include <QWidget>
+#include <QPainter>
+
+void Star::drawStar(QPaintEvent *event, qreal& rotate) {
+
+    QPainter painter(this);
+    // Определяем центр оси по координатам x, y
+    int centerX = width() / 2;
+    int centerY = height() / 2;
+    // Определяем радиус звезды
+    int radius = qMin(width(), height()) / 2;
+    // количество вершин звезды
+    int numPoints = 8;
+
+    // Вектор для координат вершин звезды
+    QVector<QPointF> points;
+
+    for (uint32_t i = 0; i < numPoints * 2; i++) {
+        // Вычисляем угол поворота для каждой вершины звезды
+        qreal angle = i * M_PI / numPoints;
+        // Вычисляем координаты вершин в полярных координатах
+        qreal x = centerX + radius / (i % 2 ? 3 : 1) * qCos(angle);
+        qreal y = centerY + radius / (i % 2 ? 3 : 1) * qSin(angle);
+        // Добавляем координаты вершин в вектор
+        points.append(QPointF(x, y));
+    }
+    // Устанавливаем основной цвет
+    painter.setBrush(QColor("#f00"));
+    // Устанавливаем цвет кисти
+    painter.setPen(QColor("#f00"));
+
+    painter.translate(-radius, -radius);
+    painter.rotate(rotate);
+    painter.translate(radius, radius);
+
+
+    // Отрисовываем звезду
+    painter.drawPolygon(points.data(), points.size());
+    }
+
+void Star::paintEvent(QPaintEvent *event) {
+    qreal qr = 5;
+    drawStar(event, qr);
+}
+
+Star::Star()
+{
+}
+

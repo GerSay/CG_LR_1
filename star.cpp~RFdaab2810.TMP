@@ -1,0 +1,22 @@
+#include "star.h"
+
+#include <QVBoxLayout>
+#include <QPainter>
+#include <QPen>
+
+void Star::paintEvent(QPaintEvent *) {
+    QPainter painter(this);
+
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.setPen(QPen(QColor("#f00"), 4));
+    painter.drawEllipse(QRectF(0, 0, 40, 40));
+}
+
+Star::Star()
+{
+    QVBoxLayout *vlay = new QVBoxLayout();
+    Star *lamp = new Star();
+    vlay->addWidget(lamp);
+
+    ui->centralwidget->setLayout(vlay);
+}

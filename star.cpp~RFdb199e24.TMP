@@ -1,0 +1,31 @@
+#include "star.h"
+
+void Star::paintEvent(QPaintEvent *) {
+    QPainter painter(this);
+
+    int centerX = width() / 2;
+    int centerY = height() / 2;
+
+    int radius = qMin(width(), height()) / 2;
+
+    int numPoints = 8;
+
+
+    QVector<QPointF> points;
+
+    for (uint32_t i = 0; i < numPoints * 2; i++) {
+        qreal angle = i * M_PI / numPoints;
+
+        qreal x = centerX + radius * qCos(angle);
+        qreal y = centerY + radius * qSin(angle);
+
+        points.append(QPointF(x, y));
+    }
+
+    painter.drawPolygon(points.data(), points.size());
+}
+
+Star::Star()
+{
+}
+

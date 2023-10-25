@@ -1,0 +1,19 @@
+#ifndef STAR_H
+#define STAR_H
+
+#include <QWidget>
+
+class Star : public QWidget
+{
+    Q_OBJECT
+protected:
+    virtual void drawStar(QPaintEvent*, qreal& rotate);
+    virtual void paintEvent(QPaintEvent *event);
+
+public:
+    explicit Star(QWidget*);
+    Star();
+
+};
+
+#endif // STAR_H

@@ -1,0 +1,10 @@
+#include "star.h"
+
+void Star::paintEvent(QPaintEvent *) {
+
+}
+
+Star::Star()
+{
+}
+

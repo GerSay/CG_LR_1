@@ -1,0 +1,24 @@
+z#include "mainwindow.h"
+#include "./ui_mainwindow.h"
+
+#include "Star.h"
+#include <QPainter>
+#include <QWidget>
+#include <QVBoxLayout>
+
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+
+    QVBoxLayout *vlay = new QVBoxLayout();
+
+    Star *star = new Star();
+    vlay->addWidget(star);
+
+    ui->centralwidget->setLayout(vlay);
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}

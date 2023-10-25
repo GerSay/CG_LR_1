@@ -1,0 +1,37 @@
+#include "star.h"
+
+#include <QVBoxLayout>
+#include <QPainter>
+#include <QPen>
+#include <QColor>
+
+void Star::paintEvent(QPaintEvent *) {
+    QLinearGradient linearGrad(QPointF(4, 4), QPointF(28, 28));
+    linearGrad.setColorAt(0, QColor("#fed9d9"));
+    linearGrad.setColorAt(1, Qt::red);
+
+
+    QPainter painter(this);
+
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.setPen(QPen(QColor("#f00"), 4));
+    painter.drawEllipse(QRectF(4, 4, 24, 24));
+
+    painter.setPen(QPen(QColor("#00f"), 1));
+    painter.drawRect(0, 0, this->rect().width(), this->rect().height());
+
+
+    painter.setBrush(QColor(Qt::transparent));
+    painter.setPen(QPen(QColor("#00f"), 1));
+    painter.drawRect(0, 0, this->rect().width(), this->rect().height());
+}
+
+Star::Star()
+{
+    this->setFixedWidth(32);
+    this->setFixedHeight(32);
+}
+
+QSize Star::sizeHint() const {
+    return QSize(32, 32);
+}
